@@ -47,3 +47,10 @@ body {
     position: relative;
 }
 
+/* Form Validation */
+.alert {
+    display: none;
+}
+
+
+/* Book List */

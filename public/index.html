@@ -30,10 +30,18 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="email" id="email" placeholder="@Username">
                         <label for="form">@email</label>
+                        <!-- Form Validation message -->
+                        <div class="alert alert-danger p-2 mt-2" id="alert" role="alert">
+                            invalid email
+                          </div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                         <label for="form">Password</label>
+                        <!-- Form Validation message -->
+                        <div class="alert alert-danger p-2 mt-2" id="alert" role="alert">
+                            invalid password
+                          </div>
                     </div>
                     <button type="submit" class="btn btn1 btn-primary w-100 mt-3 p-3">Sign in</button>
                 </form>
