@@ -53,4 +53,8 @@ body {
 }
 
 
-/* Book List */
+/* Admin Login */
+.adminLogo {
+    font-size: 5rem;
+    margin: 18px 190px;
+}
