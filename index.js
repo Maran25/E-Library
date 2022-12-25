@@ -2,7 +2,6 @@ const { urlencoded } = require('express');
 const express = require('express');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-const { Alert } = require('bootstrap');
 
 mongoose.set('strictQuery', false);
 mongoose.connect("mongodb://0.0.0.0:27017/E-Library");
@@ -114,19 +113,34 @@ app.post('/admin/addbook', (req, res) => {
         genre: req.body.genre
     });
     Book.save();
-    res.redirect('/admin/home');
+    setInterval(() => {
+        res.redirect('/admin/home');
+    }, 2000)
 });
 
 
 
 app.get('/user/dashboard', (req, res) => {
-    res.sendFile(`${__dirname}/public/bookList.html`);
+    book.find({}, (err, data) => {
+        res.render("bookList", { books: data});
+    });
 });
 
 app.get('/admin/home', (req, res) => {
     res.sendFile(`${__dirname}/public/dashboard.html`);
 });
 
+app.get('/admin/userlists', (req, res) => {
+    RegUser.find({}, (err, data) => {
+        res.render("userList", {users: data});
+    });
+});
+
+app.get('/admin/booklists', (req, res) => {
+    book.find({}, (err, data) => {
+        res.render("booktable", {books: data});
+    });
+});
 
 
-app.listen(4000, () => { console.log("Server running on port 4000") });
+app.listen(3000, () => { console.log("Server running on port 3000") });
