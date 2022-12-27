@@ -2,11 +2,23 @@ const { urlencoded } = require('express');
 const express = require('express');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.set('strictQuery', false);
 mongoose.connect("mongodb://0.0.0.0:27017/E-Library");
 const app = express();
 app.set('view engine', 'ejs');
+
+app.use(session({
+    secret: "Hello This is Library",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.session());
+app.use(passport.initialize());
 
 const registerSchema = {
     userName: { type: String, requried: true },
