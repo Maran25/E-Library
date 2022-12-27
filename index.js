@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 const registerSchema = {
     userName: { type: String, requried: true },
     email: { type: String, requried: true, unique: true },
+    phone: { type: Number, requried: true, unique: true },
     password: { type: String, requried: true },
     cPassword: { type: String, requried: true }
 };
@@ -30,7 +31,7 @@ const bookSchema = {
 
 const book = mongoose.model('BookAdd', bookSchema, 'Books');
 const admin = mongoose.model('Admin', adminSchema, 'Admin');
-const RegUser = mongoose.model('E-Library', registerSchema, 'RegisterUser');
+const RegUser = mongoose.model('E-Library', registerSchema, 'UserRegistered');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -43,6 +44,7 @@ app.post('/register', (res, req) => {
     RegUser.create({
         userName: res.body.userName,
         email: res.body.email,
+        phone: res.body.phone,
         password: res.body.password,
         cPassword: res.body.cPassword
     }, function (err, data) {
@@ -102,7 +104,8 @@ app.post('/admin', (res, req) => {
 });
 
 app.get('/admin/addbook', (req, res) => {
-    res.sendFile(`${__dirname}/public/addBook.html`);
+    // res.sendFile(`${__dirname}/public/addBook.html`);
+    res.render("addBook");
 })
 
 app.post('/admin/addbook', (req, res) => {
@@ -127,7 +130,7 @@ app.get('/user/dashboard', (req, res) => {
 });
 
 app.get('/admin/home', (req, res) => {
-    res.sendFile(`${__dirname}/public/dashboard.html`);
+    res.render("AdminDashboard");
 });
 
 app.get('/admin/userlists', (req, res) => {
@@ -142,5 +145,76 @@ app.get('/admin/booklists', (req, res) => {
     });
 });
 
+app.get('/admin/booklists/update/:id', (req, res) => {
+    book.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}, (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('updateBook', {books: docs});
+        }
+    });
+});
+
+app.post('/admin/booklists/update/:id', (req, res) => {
+    book.findByIdAndUpdate({_id: req.params.id}, req.body, (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/admin/booklists');
+        }
+    });
+});
+
+app.get('/admin/userlists/update/:id', (req, res) => {
+    RegUser.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}, (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("updateUser", {user: docs});
+        }
+    });
+});
+
+app.post('/admin/userlists/update/:id', (req, res) => {
+    RegUser.findByIdAndUpdate({_id: req.params.id}, req.body,  (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/admin/userlists');
+        }
+    });
+});
+
+app.get('/admin/userlists/delete/:id', (req, res) => {
+    RegUser.findByIdAndDelete({_id: req.params.id}, (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/admin/userlists');
+        }
+    });
+});
+
+app.get('/admin/booklists/delete/:id', (req, res) => {
+    book.findByIdAndDelete({_id: req.params.id}, (err, docs) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/admin/booklists');
+        }
+    });
+});
+
+app.get("/user/profile", (req, res) => {
+    res.render("viewUser");
+});
+
+app.get('/user/changepass', (req, res) => {
+    res.render("updatePass");
+});
+
+app.post('/user/changepass', (req, res) => {
+    
+})
 
 app.listen(3000, () => { console.log("Server running on port 3000") });
