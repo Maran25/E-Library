@@ -6,64 +6,84 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.set('strictQuery', false);
-mongoose.connect("mongodb://0.0.0.0:27017/E-Library");
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.use(session({
+app.use(session({                        //Passport
     secret: "Hello This is Library",
     resave: false,
     saveUninitialized: false
 }));
 
-app.use(passport.session());
 app.use(passport.initialize());
+app.use(passport.session());     //Passport
 
-const registerSchema = {
-    userName: { type: String, requried: true },
+mongoose.set('strictQuery', false);
+mongoose.connect("mongodb://0.0.0.0:27017/E-Library");
+
+const registerSchema = new mongoose.Schema({
+    username: { type: String, requried: true },
     email: { type: String, requried: true, unique: true },
     phone: { type: Number, requried: true, unique: true },
-    password: { type: String, requried: true },
-    cPassword: { type: String, requried: true }
-};
+    password: { type: String, requried: true }
+    // cPassword: { type: String, requried: true }
+});
 
-const adminSchema = {
+const adminSchema = new mongoose.Schema({
     email: { type: String, requried: true, unique: true },
     password: { type: String, requried: true }
-};
+});
 
-const bookSchema = {
+const bookSchema = new mongoose.Schema({
     name: { type: String, requried: true, unique: true },
     bookid: { type: String, requried: true, unique: true },
     author: { type: String, requried: true },
     genre: { type: String, requried: true },
     // img: { data: Buffer, contentType: String }
-};
+});
+
+registerSchema.plugin(passportLocalMongoose);      //Passport
+
 
 const book = mongoose.model('BookAdd', bookSchema, 'Books');
 const admin = mongoose.model('Admin', adminSchema, 'Admin');
 const RegUser = mongoose.model('E-Library', registerSchema, 'UserRegistered');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+passport.use(RegUser.createStrategy());
+passport.serializeUser(RegUser.serializeUser());          //Passport
+passport.deserializeUser(RegUser.deserializeUser());   //Passport
+
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render("index");
+})
+
+app.get('/signup', (req, res) => {
+    res.render("index");
 });
 
-app.post('/register', (res, req) => {
-    RegUser.create({
-        userName: res.body.userName,
-        email: res.body.email,
-        phone: res.body.phone,
-        password: res.body.password,
-        cPassword: res.body.cPassword
-    }, function (err, data) {
-        if (err) throw err;
-        console.log(data);
+app.get('/register', (req, res) => {
+    res.render("registerUser");
+});
+
+app.post('/register', (req, res) => {
+
+    RegUser.register(new RegUser({
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+    }), req.body.password, function(err, user) {
+        if(err) {
+            console.log(err);
+            res.redirect('/register');
+        } else {
+            passport.authenticate("local")(req, res, () => {
+                res.redirect("/user/dashboard");
+            });
+        }
     });
-    req.redirect('/');
 });
 
 // User Login and Register page
@@ -136,9 +156,13 @@ app.post('/admin/addbook', (req, res) => {
 
 
 app.get('/user/dashboard', (req, res) => {
-    book.find({}, (err, data) => {
-        res.render("bookList", { books: data});
-    });
+    if(req.isAuthenticated()) {
+        book.find({}, (err, data) => {
+            res.render("bookList", { books: data});
+        });
+    } else {
+        res.redirect('/signup')
+    }
 });
 
 app.get('/admin/home', (req, res) => {

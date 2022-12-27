@@ -1,82 +1,151 @@
 <style>
-    /****** ADD BOOK ******/
-    body {
-            background-color: #eee;
-        }
-        .addBookContainer {
-            height: 80vh;
-            text-align: center;
-        }
-        nav {
-            border-bottom: 3px solid rgb(188, 0, 188);
-        }
-        #addBookForm {
-            /* width: 60%; */
-            margin: auto;
-            background-color: #fff;
-            box-shadow: 6px 9px 33px 2px rgba(0,0,0,0.5);
-            padding: 40px;
-        }
-    
-    /****** ADMIN DASHBOARD ******/
-    .options i {
-      font-size: 5rem
-    }
-    .options {
-      height: 200px;
-      width: 200px;
-      justify-content: center;
-      margin: auto 30px;
-      transition: 0.5s;
-      box-shadow: 6px 10px 23px 2px rgba(0,0,0,0.1);
-    }
-    .options:hover {
-      box-shadow: 3px 19px 30px rgba(0,0,0,0.2);
-    }
-    a {
-      text-decoration: none;
-      color: black;
-    }
-    a:hover {
-      color: black;
-    }
+  /****** ADD BOOK ******/
+  body {
+    background-color: #eee;
+  }
 
-    /****** BOOK LIST ******/
+  .addBookContainer {
+    height: 80vh;
+    text-align: center;
+  }
 
-    .card {
-      text-align: center;
-      margin: 30px;
-    }
+  nav {
+    border-bottom: 3px solid rgb(188, 0, 188);
+  }
 
-    img {
-      height: 200px;
-      margin-bottom: 10px;
-    }
+  #addBookForm {
+    /* width: 60%; */
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 6px 9px 33px 2px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+  }
 
-    .fieldSpan {
-      color: rgb(32, 32, 32);
-      font-weight: 500;
-    }
+  /****** ADMIN DASHBOARD ******/
+  .options i {
+    font-size: 5rem
+  }
 
-    /****** USER PROFILE *******/
-    body {
-      background-color: #eee;
-    }
-    #profileContainer {
-      margin-top: 60px;
-      background-color: #fff;
-      width: 60%;
-      height: 500px;
-      border-radius: 20px;
-    }
-    #profileContainer h2 {
-      padding-top: 70px;
-      text-align: center;
-      font-size: 3rem;
-    }
-    .tableDiv {
-      width: 50%;
-      padding-left: 40%;
-      padding-bottom: 30px;
-    }
+  .options {
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    margin: auto 30px;
+    transition: 0.5s;
+    box-shadow: 6px 10px 23px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .options:hover {
+    box-shadow: 3px 19px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+  }
+
+  /****** BOOK LIST ******/
+
+  .card {
+    text-align: center;
+    margin: 30px;
+  }
+
+  img {
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  .fieldSpan {
+    color: rgb(32, 32, 32);
+    font-weight: 500;
+  }
+
+  /****** USER PROFILE *******/
+  body {
+    background-color: #eee;
+  }
+
+  #profileContainer {
+    margin-top: 60px;
+    background-color: #fff;
+    width: 60%;
+    height: 500px;
+    border-radius: 20px;
+  }
+
+  #profileContainer h2 {
+    padding-top: 70px;
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  .tableDiv {
+    width: 50%;
+    padding-left: 40%;
+    padding-bottom: 30px;
+  }
+
+  /****** SIGNIN AND LOGIN ******/
+
+  .signinImg {
+    width: 600px;
+    position: absolute;
+    top: 120px;
+  }
+
+  .signinContent {
+    position: absolute;
+    right: 7%;
+    top: 160px;
+    width: 35%;
+  }
+
+  .registerContent {
+    position: absolute;
+    right: 7%;
+    top: 120px;
+    width: 35%;
+  }
+
+  .switchPage {
+    position: absolute;
+    right: 0;
+  }
+
+  .switchPage button {
+    border-radius: 50px;
+    background-color: rgb(240, 240, 240);
+    font-weight: 500;
+    color: rgb(80, 80, 80);
+    border: solid 2px rgb(154, 154, 154);
+  }
+
+  .btn1 {
+    background-color: #6c63ff;
+  }
+
+  .row {
+    position: relative;
+  }
+
+  .relContainer {
+    position: relative;
+  }
+
+  /* Form Validation */
+  .alert {
+    display: none;
+  }
+
+
+  /* Admin Login */
+  .adminLogo {
+    font-size: 5rem;
+    margin: 18px 190px;
+  }
 </style>
