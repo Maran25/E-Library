@@ -1,0 +1,36 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+
+  <!-- Dashboard -->
+  <div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+
+    <div class="row mt-5 d-flex">
+      <div class="options col-3 card mt-5 text-center">
+        <a href="/admin/addbook" role="button">
+        <i class="fa-solid fa-plus mb-3"></i>
+        <h5>Add Book</h5></a>
+      </div>
+
+      <div class="options col-3 card mt-5 text-center">
+        <a href="/admin/userlists" role="button">
+          <i class="fa-solid fa-book-open-reader mb-3"></i>
+        <h5>Users</h5></a>
+      </div>
+
+      <div class="options col-3 card mt-5 text-center">
+        <a href="/admin/booklists" role="button"> 
+        <i class="fa-solid fa-list mb-3"></i>
+        <h5>Registered Book</h5></a>
+      </div>
+    </div>
+  </div>
+
+  </body>
+  </html>

@@ -1,0 +1,35 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+
+  <div class="container">
+    <form action="/admin/userlists/update/<%= user._id %> " method="post" class="col-lg-7 mt-5">
+        <h1 class="mb-4">Update User</h1>
+        <div class="form-floating mt-3">
+            <input type="text" name="userName" class="form-control" placeholder="Name" value="<%= user.userName %> ">
+            <label for="name">Name</label>
+        </div>
+        <div class="form-floating mt-3">
+            <input type="text" name="phone" class="form-control" placeholder="Phone" value="<%= user.phone %> ">
+            <label for="name">Phone</label>
+        </div>
+        <div class="form-floating mt-3">
+            <input type="text" name="email" class="form-control" placeholder="Email" value="<%= user.email %> ">
+            <label for="name">Email</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" name="password" class="form-control" placeholder="Password" value="<%= user.password %> ">
+            <label for="name">Password</label>
+        </div>
+
+        <button type="submit" class="btn btn-success p-3 mt-3 w-100">Update User</button>
+    </form>
+</div>
+</body>
+</html>
