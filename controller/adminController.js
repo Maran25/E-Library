@@ -1,5 +1,18 @@
 import RegUser from '../models/userModel.js';
 import book from '../models/bookModel.js';
+import admin from '../models/adminModel.js';
+import passport from 'passport';
+
+
+// export const getAdminLogin = async (req, res, next) => {
+//     res.render('adminLogin');
+// }
+
+// export const getAdminRegister = async (req, res, next) => {
+//     res.render('registerAdmin');
+// }
+
+
 
 export const getAddBook = async (req, res, next) => {
     res.render("addBook");

@@ -14,6 +14,10 @@
 <body>
 
     <div class="container h-100">
+        <div class="switchPage mt-4">
+            <p class="d-inline me-3">Don't have an Account ?</p>
+            <a href="/adminregister"><button class="btn btn-light">Register here</button></a>
+        </div>
         <div class="row">
             <div class="col-6">
                 <img src="./images/PicsArt_12-22-08.13.42.jpg" class="signinImg align-middle" alt="girl studying">
@@ -22,9 +26,9 @@
                 <div class="col-8 registerContent mt-4">
                 <i class="fa-solid fa-user adminLogo text-warning"></i>
                 <h1 class="text-center mb-4">Admin Login</h1>
-                <form action="/admin" method="post">
+                <form action="/adminlogin" method="post">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="email" id="username" placeholder="sample@gmail.com">
+                        <input type="email" class="form-control" name="username" id="username" placeholder="sample@gmail.com">
                         <label for="form">sample@gmail.com</label>
                     </div>
                     <div class="form-floating mb-3">

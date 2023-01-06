@@ -2,6 +2,43 @@ import RegUser from '../models/userModel.js';
 import book from '../models/bookModel.js';
 import passport from 'passport';
 
+
+// Admin ******
+
+export const postAdminRegister = async (req, res, next) => {
+    const { username, name, password } = req.body;
+
+    admin.register({ username, name}, password, function(err, user) {
+        if(err) {
+            console.log(err);
+            res.redirect('/adminregister');
+        } else {
+            passport.authenticate("local")(req, res, () => {
+                res.redirect("/admin/dashboard");
+            });
+        }
+    });
+}
+
+export const postAdminLogin = async (req, res, next) => {
+    const user = new admin({
+        username: req.body.username,
+        password: req.body.password
+    });
+
+    req.login(user, (err) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("admin logged in successful");
+            res.redirect('/admin/dashboard');    //check this area /user
+        }
+    })
+}
+
+// Admin ******
+
+
 export const userRegister = async (req, res, next) => {
 
     RegUser.register(new RegUser({
