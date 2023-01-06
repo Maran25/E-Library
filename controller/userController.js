@@ -1,6 +1,6 @@
 import RegUser from '../models/userModel.js';
 import book from '../models/bookModel.js';
-
+import passport from 'passport';
 
 export const userRegister = async (req, res, next) => {
 

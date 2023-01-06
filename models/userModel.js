@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
 const registerSchema = new mongoose.Schema({
-    username: { type: String, requried: true, unique: true },
+    username: { type: String, requried: true },
     name: { type: String, requried: true },
-    phone: { type: Number, requried: true, unique: true },
+    phone: { type: Number, requried: true },
     password: { type: String, requried: true },
     role: { type: String, default: "user"}
     // cPassword: { type: String, requried: true }

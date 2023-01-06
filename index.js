@@ -12,7 +12,7 @@ const app = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.use(session({                    
+app.use(session({
     secret: "Hello This is Library",
     resave: false,
     saveUninitialized: false
@@ -20,15 +20,31 @@ app.use(session({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.use(passport.session());     
+app.use(passport.session());
 
 passport.use(RegUser.createStrategy());
-passport.serializeUser(RegUser.serializeUser());          
-passport.deserializeUser(RegUser.deserializeUser());   
+passport.serializeUser(RegUser.serializeUser());
+passport.deserializeUser(RegUser.deserializeUser());
+
+const isAdmin = function (req, res, next) {
+    if (req.user.role === 'admin') {
+        return next();
+    } else {
+        res.send('only admin');
+    }
+}
+const isLogged = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        res.redirect('/');
+    }
+}
+
 
 app.use(userAuthRoute);
-app.use('/admin', adminRoute);
-app.use('/user', userRoute);
+app.use('/admin',isLogged, isAdmin, adminRoute);
+app.use('/user',isLogged, userRoute);
 
 
 app.post('/admin', (res, req) => {
@@ -55,9 +71,9 @@ app.post('/admin', (res, req) => {
 
 
 app.get('/user/dashboard', (req, res) => {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         book.find({}, (err, data) => {
-            res.render("bookList", { books: data});
+            res.render("bookList", { books: data });
         });
     } else {
         res.redirect('/signup')
