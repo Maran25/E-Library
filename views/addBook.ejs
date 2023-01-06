@@ -1,0 +1,35 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+
+<body>
+
+    <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+    <!-- Book add form -->
+    <div class="container addBookContainer">
+        <form id="addBookForm" action="/admin/addbook" method="post" class="col-lg-7 mt-5">
+            <h1 class="mb-4">Add Book</h1>
+            <div class="form-floating mt-3">
+                <input type="text" name="name" class="form-control" placeholder="Email@gmail">
+                <label for="name">Book Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="text" name="bookid" class="form-control" placeholder="Email@gmail">
+                <label for="name">Book Id</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="text" name="author" class="form-control" placeholder="Email@gmail">
+                <label for="name">Author</label>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+                <input type="text" name="genre" class="form-control" placeholder="Email@gmail">
+                <label for="name">Genere</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary p-3 mt-3 w-100">Add</button>
+        </form>
+    </div>
+</body>
+
+</html>

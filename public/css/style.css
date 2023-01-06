@@ -1,0 +1,60 @@
+body {
+    height: 100vh;
+}
+
+.signinImg {
+    width: 600px;
+    position: absolute;
+    top: 120px;
+}
+
+.signinContent {
+    position: absolute;
+    right: 7%;
+    top: 160px;
+    width: 35%;
+}
+
+.registerContent {
+    position: absolute;
+    right: 7%;
+    top: 120px;
+    width: 35%;
+}
+
+.switchPage {
+    position: absolute;
+    right: 0;
+}
+
+.switchPage button {
+    border-radius: 50px;
+    background-color: rgb(240, 240, 240);
+    font-weight: 500;
+    color: rgb(80, 80, 80);
+    border: solid 2px rgb(154, 154, 154);
+}
+
+.btn1 {
+    background-color: #6c63ff;
+}
+
+.row {
+    position: relative;
+}
+
+.relContainer {
+    position: relative;
+}
+
+/* Form Validation */
+.alert {
+    display: none;
+}
+
+
+/* Admin Login */
+.adminLogo {
+    font-size: 5rem;
+    margin: 18px 190px;
+}

@@ -1,0 +1,46 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+
+  <div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">S No</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Author</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i<books.length; i++) { %> 
+      <tr>
+        <td><%= i+1 %> </td>
+        <td><%= books[i].bookid %> </td>
+        <td><%= books[i].name %> </td>
+        <td><%= books[i].author %> </td>
+        <td><%= books[i].genre %> </td>
+        <td>
+          <a href="/admin/booklists/update/<%= books[i]._id %>" role="button" class="btn btn-success"><i class="fas fa-edit"></i></a>
+          <a href="/admin/booklists/delete/<%= books[i]._id %>" role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+        </td>
+      </tr> 
+      <% } %> 
+      </tbody>
+      </table>
+      </div>
+      </div>
+      
+</body>
+
+</html>

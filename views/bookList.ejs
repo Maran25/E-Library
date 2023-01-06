@@ -1,0 +1,43 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+
+<body>
+
+  <!-- Navbar -->
+  <%- include("partials/usernavbar") %> 
+
+  <!-- Book List -->
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <%  books.forEach(function(book){ %>
+
+      <div class="cart card col-3 pt-4">
+        <div class="card-image">
+          <img class="cartImage"
+            src="https://imgs.search.brave.com/pB3k1GiFEqL1FLddLRckfsSfP9F5keJf0kiaO5uOqe8/rs:fit:1182:1200:1/g:ce/aHR0cHM6Ly9oYWNo/ZXR0ZS5pbWdpeC5u/ZXQvYm9va3MvOTc4/MDc0OTkyODU3NS5q/cGc_YXV0bz1jb21w/cmVzcyxmb3JtYXQ"
+            alt="">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><%= book.name %>  </h4>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <span class="fieldSpan">Book Id</span> <span><%= book.bookid %> </span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="fieldSpan">Author</span> <span><%= book.author %> </span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span class="fieldSpan">Field</span> <span><%= book.genre %> </span>
+          </div>
+        </div>
+      </div>
+
+      <% }) %>
+
+      
+    </div>
+  </div>
+</body>
+
+</html>

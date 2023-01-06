@@ -1,0 +1,44 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+
+  <div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">S No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i<users.length; i++) { %> 
+      <tr>
+        <td><%= i+1 %> </td>
+        <td><%= users[i].userName %> </td>
+        <td><%= users[i].phone %> </td>
+        <td><%= users[i].email %> </td>
+        <td>
+          <a href="/admin/userlists/update/<%= users[i]._id %> " role="button" class="btn btn-success"><i class="fas fa-edit"></i></a>
+          <a href="/admin/userlists/delete/<%= users[i]._id %> " role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+        </td>
+      </tr> 
+      <% } %> 
+      </tbody>
+      </table>
+      </div>
+      </div>
+      
+</body>
+
+</html>

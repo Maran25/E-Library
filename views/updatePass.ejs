@@ -1,0 +1,27 @@
+<!-- Header -->
+<%- include("partials/header") %> 
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+
+  <div class="container">
+    <form action="/user/changepass" method="post" class="col-lg-7 mt-5">
+        <h1 class="mb-4">Change Password</h1>
+        <div class="form-floating mt-3">
+            <input type="text" name="oldpassword" class="form-control" placeholder="Name">
+            <label for="name">Old Password</label>
+        </div>
+        <div class="form-floating mt-3">
+            <input type="text" name="newpassword" class="form-control" placeholder="Phone">
+            <label for="name">New Password</label>
+        </div>
+
+        <button type="submit" class="btn btn-success p-3 mt-3 w-100">Change</button>
+    </form>
+</div>
+</body>
+</html>
