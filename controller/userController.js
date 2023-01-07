@@ -5,10 +5,18 @@ import passport from 'passport';
 
 // Admin ******
 
-export const postAdminRegister = async (req, res, next) => {
-    const { username, name, password } = req.body;
+export const getAdminLogin = async (req, res, next) => {
+    res.render('adminLogin');
+}
 
-    admin.register({ username, name}, password, function(err, user) {
+export const getAdminRegister = async (req, res, next) => {
+    res.render('registerAdmin');
+}
+
+export const postAdminRegister = async (req, res, next) => {
+    const { username, name, password, phone } = req.body;
+
+    RegUser.register({ username, name, phone, role: "admin"}, password, function(err, user) {
         if(err) {
             console.log(err);
             res.redirect('/adminregister');
@@ -21,7 +29,7 @@ export const postAdminRegister = async (req, res, next) => {
 }
 
 export const postAdminLogin = async (req, res, next) => {
-    const user = new admin({
+    const user = new RegUser({
         username: req.body.username,
         password: req.body.password
     });
@@ -29,6 +37,7 @@ export const postAdminLogin = async (req, res, next) => {
     req.login(user, (err) => {
         if(err) {
             console.log(err);
+            res.redirect('/adminlogin');
         } else {
             console.log("admin logged in successful");
             res.redirect('/admin/dashboard');    //check this area /user
