@@ -112,3 +112,20 @@ export const getUserProfile = async (req, res, next) => {
 export const getChangePassword = async (req, res, next) => {
     res.render("updatePass");
 }
+
+
+// Logout
+
+export const getUserLogout = async (req, res, next) => {
+    req.logout((err) => {
+        console.log(err);
+    });
+    res.redirect('/')
+}
+
+export const getAdminLogout = async (req, res, next) => {
+    req.logout((err) => {
+        console.log(err);
+    });
+    res.redirect('/adminlogin')
+}
