@@ -52,6 +52,7 @@ export const userRegister = async (req, res, next) => {
 
     RegUser.register(new RegUser({
         username: req.body.username,
+        name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
     }), req.body.password, function(err, user) {
@@ -106,7 +107,9 @@ export const getUserDashboard = async (req, res, next) => {
 }
 
 export const getUserProfile = async (req, res, next) => {
-    res.render("viewUser");
+    console.log(req.user);
+    const { username, phone, name, _id } = req.user;
+    res.render("viewUser", {email: username, name: name, phone: phone, id : _id});
 }
 
 export const getChangePassword = async (req, res, next) => {
@@ -120,6 +123,7 @@ export const getUserLogout = async (req, res, next) => {
     req.logout((err) => {
         console.log(err);
     });
+    console.log("User Logged Out");
     res.redirect('/')
 }
 
@@ -127,5 +131,6 @@ export const getAdminLogout = async (req, res, next) => {
     req.logout((err) => {
         console.log(err);
     });
+    console.log("Admin Logged Out");
     res.redirect('/adminlogin')
 }

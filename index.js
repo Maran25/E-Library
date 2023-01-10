@@ -41,45 +41,9 @@ const isLogged = function (req, res, next) {
     }
 }
 
-
 app.use(userAuthRoute);
-app.use('/admin',isLogged, isAdmin, adminRoute);
-app.use('/user',isLogged, userRoute);
-
-
-app.post('/admin', (res, req) => {
-    admin.findOne({ email: res.body.email }, (err, data) => {
-        if (err) {
-            throw err;
-        }
-        else {
-            if (data === null) {
-                console.log("Invalid Email");
-            }
-            else if ((data.password === res.body.password) && (data.email === res.body.email)) {
-                console.log("Login Success");
-                req.redirect('/admin/home');
-            }
-            else {
-                console.log("Invalid password");
-            }
-        }
-    })
-    // req.redirect('/');
-});
-
-
-
-app.get('/user/dashboard', (req, res) => {
-    if (req.isAuthenticated()) {
-        book.find({}, (err, data) => {
-            res.render("bookList", { books: data });
-        });
-    } else {
-        res.redirect('/signup')
-    }
-});
-
+app.use('/admin', isLogged, isAdmin, adminRoute);
+app.use('/user', isLogged, userRoute);
 
 
 mongoose.set('strictQuery', false);
